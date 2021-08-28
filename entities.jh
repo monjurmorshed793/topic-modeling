@@ -53,5 +53,5 @@ relationship ManyToOne{
 }
 
 paginate Keyword, TopicModeling, Posts, Labeling with pagination
-service Keyword, TopicModeling, Posts, Labeling with ServiceClass
+service Keyword, TopicModeling, Posts, Labeling with serviceClass
 filter Keyword, TopicModeling, Posts, Labeling

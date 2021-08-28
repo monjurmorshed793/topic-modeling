@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="topicModeling">
+      <h2 data-cy="topicModelingDetailsHeading"><span>Topic Modeling</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ topicModeling.id }}</span>
+        </dd>
+        <dt><span>User Name</span></dt>
+        <dd>
+          <span>{{ topicModeling.userName }}</span>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+          <span>{{ topicModeling.category }}</span>
+        </dd>
+        <dt><span>Sub Category</span></dt>
+        <dd>
+          <span>{{ topicModeling.subCategory }}</span>
+        </dd>
+        <dt><span>Topic</span></dt>
+        <dd>
+          <span>{{ topicModeling.topic }}</span>
+        </dd>
+        <dt><span>Sub Topic</span></dt>
+        <dd>
+          <span>{{ topicModeling.subTopic }}</span>
+        </dd>
+        <dt><span>Keyword</span></dt>
+        <dd>
+          <div *ngIf="topicModeling.keyword">
+            <a [routerLink]="['/keyword', topicModeling.keyword?.id, 'view']">{{ topicModeling.keyword?.keywords }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/topic-modeling', topicModeling.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

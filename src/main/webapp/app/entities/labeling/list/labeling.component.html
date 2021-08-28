@@ -1,0 +1,116 @@
+<div>
+  <h2 id="page-heading" data-cy="LabelingHeading">
+    <span>Labelings</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-labeling"
+        [routerLink]="['/labeling/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Labeling </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="labelings?.length === 0">
+    <span>No labelings found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="labelings && labelings.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="userName"><span>User Name</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="framework"><span>Framework</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="documentNo"><span>Document No</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dominantTopic"><span>Dominant Topic</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="topicPercContrib"><span>Topic Perc Contrib</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="keywords"><span>Keywords</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="title"><span>Title</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="texts"><span>Texts</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="answer"><span>Answer</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="label"><span>Label</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="reason"><span>Reason</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let labeling of labelings; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/labeling', labeling.id, 'view']">{{ labeling.id }}</a>
+          </td>
+          <td>{{ labeling.userName }}</td>
+          <td>{{ labeling.framework }}</td>
+          <td>{{ labeling.documentNo }}</td>
+          <td>{{ labeling.dominantTopic }}</td>
+          <td>{{ labeling.topicPercContrib }}</td>
+          <td>{{ labeling.keywords }}</td>
+          <td>{{ labeling.title }}</td>
+          <td>{{ labeling.texts }}</td>
+          <td>{{ labeling.answer }}</td>
+          <td>{{ labeling.label }}</td>
+          <td>{{ labeling.reason }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/labeling', labeling.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/labeling', labeling.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(labeling)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="labelings && labelings.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="keyword">
+      <h2 data-cy="keywordDetailsHeading"><span>Keyword</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ keyword.id }}</span>
+        </dd>
+        <dt><span>Framework</span></dt>
+        <dd>
+          <span>{{ keyword.framework }}</span>
+        </dd>
+        <dt><span>Topic Number</span></dt>
+        <dd>
+          <span>{{ keyword.topicNumber }}</span>
+        </dd>
+        <dt><span>Keywords</span></dt>
+        <dd>
+          <span>{{ keyword.keywords }}</span>
+        </dd>
+        <dt><span>Number Of Posts</span></dt>
+        <dd>
+          <span>{{ keyword.numberOfPosts }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/keyword', keyword.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

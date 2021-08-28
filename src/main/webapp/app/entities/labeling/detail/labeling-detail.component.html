@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="labeling">
+      <h2 data-cy="labelingDetailsHeading"><span>Labeling</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ labeling.id }}</span>
+        </dd>
+        <dt><span>User Name</span></dt>
+        <dd>
+          <span>{{ labeling.userName }}</span>
+        </dd>
+        <dt><span>Framework</span></dt>
+        <dd>
+          <span>{{ labeling.framework }}</span>
+        </dd>
+        <dt><span>Document No</span></dt>
+        <dd>
+          <span>{{ labeling.documentNo }}</span>
+        </dd>
+        <dt><span>Dominant Topic</span></dt>
+        <dd>
+          <span>{{ labeling.dominantTopic }}</span>
+        </dd>
+        <dt><span>Topic Perc Contrib</span></dt>
+        <dd>
+          <span>{{ labeling.topicPercContrib }}</span>
+        </dd>
+        <dt><span>Keywords</span></dt>
+        <dd>
+          <span>{{ labeling.keywords }}</span>
+        </dd>
+        <dt><span>Title</span></dt>
+        <dd>
+          <span>{{ labeling.title }}</span>
+        </dd>
+        <dt><span>Texts</span></dt>
+        <dd>
+          <span>{{ labeling.texts }}</span>
+        </dd>
+        <dt><span>Answer</span></dt>
+        <dd>
+          <span>{{ labeling.answer }}</span>
+        </dd>
+        <dt><span>Label</span></dt>
+        <dd>
+          <span>{{ labeling.label }}</span>
+        </dd>
+        <dt><span>Reason</span></dt>
+        <dd>
+          <span>{{ labeling.reason }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/labeling', labeling.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
