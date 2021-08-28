@@ -1,0 +1,57 @@
+enum Framework{
+    REACT_NATIVE,
+    FLUTTER,
+    CORDOVA,
+    XAMARIN
+}
+
+entity Keyword{
+    framework Framework,
+    topicNumber Integer,
+    keywords String,
+    numberOfPosts Integer
+}
+
+entity TopicModeling{
+    // Keyword
+    userName String,
+    category String,
+    subCategory String,
+    topic String,
+    subTopic String
+}
+
+entity Posts{
+    framework Framework,
+    documentNo Integer,
+    dominantTopic Integer,
+    topicPercContrib Double,
+    keywords String,
+    title TextBlob,
+    texts TextBlob,
+    answer TextBlob
+}
+
+entity Labeling{
+    userName String
+    framework Framework,
+    documentNo Integer,
+    dominantTopic Integer,
+    topicPercContrib Double,
+    keywords String,
+    title TextBlob,
+    texts TextBlob,
+    answer TextBlob,
+    label String,
+    reason TextBlob
+}
+
+
+
+relationship ManyToOne{
+    TopicModeling{keyword(keywords)} to Keyword
+}
+
+paginate Keyword, TopicModeling, Posts, Labeling with pagination
+service Keyword, TopicModeling, Posts, Labeling with ServiceClass
+filter Keyword, TopicModeling, Posts, Labeling
