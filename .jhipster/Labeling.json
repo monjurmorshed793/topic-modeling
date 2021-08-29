@@ -1,0 +1,65 @@
+{
+  "name": "Labeling",
+  "fields": [
+    {
+      "fieldName": "userName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "framework",
+      "fieldType": "Framework",
+      "fieldValues": "REACT_NATIVE,FLUTTER,CORDOVA,XAMARIN"
+    },
+    {
+      "fieldName": "documentNo",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dominantTopic",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "topicPercContrib",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "keywords",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "title",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "texts",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "answer",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "label",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reason",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "labeling",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210828192515"
+}
