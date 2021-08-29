@@ -9,25 +9,25 @@ services:
       - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
       - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
-      - SPRING_R2DBC_URL=r2dbc:postgresql://topicmodeling-postgresql:5432/TopicModeling
-      - SPRING_LIQUIBASE_URL=jdbc:postgresql://topicmodeling-postgresql:5432/TopicModeling
+      - SPRING_R2DBC_URL=r2dbc:mysql://topicmodeling-mysql:3306/topicmodeling?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      - SPRING_LIQUIBASE_URL=jdbc:mysql://topicmodeling-mysql:3306/topicmodeling?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
       - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:
-      - 127.0.0.1:8080:8080
-  topicmodeling-postgresql:
-    image: postgres:13.3
+      - 8989:8080
+  topicmodeling-mysql:
+    image: mysql:8.0.25
     # volumes:
-    #   - ~/volumes/jhipster/TopicModeling/postgresql/:/var/lib/postgresql/data/
+    #   - ~/volumes/jhipster/TopicModeling/mysql/:/var/lib/mysql/
     environment:
-      - POSTGRES_USER=TopicModeling
-      - POSTGRES_PASSWORD=
-      - POSTGRES_HOST_AUTH_METHOD=trust
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=topicmodeling
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:
-      - 127.0.0.1:5432:5432
+      - 3306:3306
+    command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
   jhipster-registry:
     image: jhipster/jhipster-registry:v6.8.0
     volumes:
