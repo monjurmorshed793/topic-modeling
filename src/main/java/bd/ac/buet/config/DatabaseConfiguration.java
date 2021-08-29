@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -36,6 +37,32 @@ import tech.jhipster.config.JHipsterConstants;
 @EnableTransactionManagement
 public class DatabaseConfiguration {
 
+    /**
+     * Simple singleton to convert {@link UUID}s to their {@link String} representation.
+     */
+    @WritingConverter
+    public enum UUIDToStringConverter implements Converter<UUID, String> {
+        INSTANCE;
+
+        @Override
+        public String convert(UUID source) {
+            return source == null ? null : source.toString();
+        }
+    }
+
+    /**
+     * Simple singleton to convert from {@link String} {@link UUID} representation.
+     */
+    @ReadingConverter
+    public enum StringToUUIDConverter implements Converter<String, UUID> {
+        INSTANCE;
+
+        @Override
+        public UUID convert(String source) {
+            return source == null ? null : UUID.fromString(source);
+        }
+    }
+
     // LocalDateTime seems to be the only type that is supported across all drivers atm
     // See https://github.com/r2dbc/r2dbc-h2/pull/139 https://github.com/mirromutth/r2dbc-mysql/issues/105
     @Bean
@@ -48,6 +75,8 @@ public class DatabaseConfiguration {
         converters.add(DurationReadConverter.INSTANCE);
         converters.add(ZonedDateTimeReadConverter.INSTANCE);
         converters.add(ZonedDateTimeWriteConverter.INSTANCE);
+        converters.add(StringToUUIDConverter.INSTANCE);
+        converters.add(UUIDToStringConverter.INSTANCE);
         converters.addAll(R2dbcCustomConversions.STORE_CONVERTERS);
         return new R2dbcCustomConversions(
             CustomConversions.StoreConversions.of(dialect.getSimpleTypeHolder(), converters),
