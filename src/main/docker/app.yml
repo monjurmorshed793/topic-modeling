@@ -23,6 +23,9 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=topicmodeling
+      - MYSQL_USER=morshed
+      - MYSQL_PASSWORD=@ustig100
+      - MYSQL_ROOT_PASSWORD=@ustig100
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:
