@@ -61,8 +61,8 @@ spring:
     password:
   r2dbc:
     url: r2dbc:mysql://localhost:3306/TopicModeling?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
-    username: root
-    password:
+    username: morshed
+    password: '@ustig100'
   thymeleaf:
     cache: true
   sleuth:
