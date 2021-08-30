@@ -16,7 +16,7 @@
     "otherModules": [],
     "pages": [],
     "creationTimestamp": 1629830205868,
-    "serviceDiscoveryType": "eureka",
+    "serviceDiscoveryType": false,
     "reactive": true,
     "authenticationType": "jwt",
     "packageName": "bd.ac.buet",
